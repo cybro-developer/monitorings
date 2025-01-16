@@ -60,6 +60,9 @@ def main():
         sys.exit(1)
 
     balance_usd = balance_eth * float(eth_price) / 1e18
+    print(f"Current balance: {balance_usd:.2f}")
+    print(f"Thresholds: {', '.join(NOTIFICATION_THRESHOLD_USD)}")
+
     for threshold in NOTIFICATION_THRESHOLD_USD:
         if balance_usd < float(threshold):
             if not redis_client.exists(f"{REDIS_KEY}:{threshold}"):
