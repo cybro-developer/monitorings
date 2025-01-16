@@ -68,7 +68,7 @@ def main():
             if not redis_client.exists(f"{REDIS_KEY}:{threshold}"):
                 print(f"Balance less than threshold ({float(threshold):.2f}): {balance_usd:.2f}")
                 loop.run_until_complete(bot.send_message(chat_id=TELEGRAM_CHAT_ID,
-                                                         text=f"‼ Oracle admin balance too low: <b>${balance_usd:.2f}</b>\nTop up address <code>{ORACLE_ADMIN_ADDRESS}</code>",
+                                                         text=f"‼️ Oracle admin balance too low: <b>${balance_usd:.2f}</b>\nTop up address <code>{ORACLE_ADMIN_ADDRESS}</code>",
                                                          parse_mode="html"))
 
                 redis_client.setex(f"{REDIS_KEY}:{threshold}", value=balance_usd, time=timedelta(hours=1))
